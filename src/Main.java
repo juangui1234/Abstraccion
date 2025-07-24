@@ -1,15 +1,23 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
+import view.FormPersona;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
-
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        // Establecer look and feel del sistema operativo
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException |
+                 InstantiationException |
+                 IllegalAccessException |
+                 UnsupportedLookAndFeelException e) {
+            System.err.println("No se pudo establecer el Look and Feel: " + e.getMessage());
         }
+
+        // Ejecutar la interfaz principal en el hilo de eventos de Swing
+        javax.swing.SwingUtilities.invokeLater(() -> {
+            new FormPersona().setVisible(true);  // Cambia aquí si tienes múltiples formularios
+        });
     }
 }
